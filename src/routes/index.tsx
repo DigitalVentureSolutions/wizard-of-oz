@@ -13,8 +13,7 @@ function Index() {
 	});
 	console.log(query.data);
 	return (
-		<div className="p-2">
-			<h3>Welcome Home!</h3>
-		</div>
+		<>
+		</>
 	);
 }

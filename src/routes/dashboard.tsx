@@ -19,7 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export const Route = createFileRoute("/dashboard")({
 	component: DashboardPage,
 });
-export default function DashboardPage() {
+function DashboardPage() {
 	return (
 		<>
 			<title>Dashboard</title>
