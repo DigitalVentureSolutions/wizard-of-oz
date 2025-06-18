@@ -17,6 +17,18 @@ declare module "@tanstack/react-router" {
 	}
 }
 
+async function enableMocking() {
+	if (process.env.NODE_ENV !== "development") {
+		return;
+	}
+
+	const { worker } = await import("./mocks/browser");
+
+	// `worker.start()` returns a Promise that resolves
+	// once the Service Worker is up and ready to intercept requests.
+	return worker.start();
+}
+
 // Create a client
 const queryClient = new QueryClient();
 
@@ -24,12 +36,14 @@ const queryClient = new QueryClient();
 // biome-ignore lint/style/noNonNullAssertion: Assume root element exists
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
-	const root = ReactDOM.createRoot(rootElement);
-	root.render(
-		<StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
-			</QueryClientProvider>
-		</StrictMode>,
-	);
+	enableMocking().then(() => {
+		const root = ReactDOM.createRoot(rootElement);
+		root.render(
+			<StrictMode>
+				<QueryClientProvider client={queryClient}>
+					<RouterProvider router={router} />
+				</QueryClientProvider>
+			</StrictMode>,
+		);
+	});
 }

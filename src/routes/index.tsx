@@ -9,10 +9,7 @@ function Index() {
 	// Queries
 	const query = useQuery({
 		queryKey: ["todos"],
-		queryFn: () =>
-			fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
-				res.json(),
-			),
+		queryFn: () => fetch("/api/todos").then((res) => res.json()),
 	});
 	console.log(query.data);
 	return (
