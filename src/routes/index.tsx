@@ -1,20 +1,23 @@
-import { useQuery } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { useQuery } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/')({
-    component: Index,
-})
+export const Route = createFileRoute("/")({
+	component: Index,
+});
 
 function Index() {
-    // Queries
-    const query = useQuery({
-        queryKey: ['todos'], queryFn: () =>
-            fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json())
-    })
-    console.log(query.data)
-    return (
-        <div className="p-2">
-            <h3>Welcome Home!</h3>
-        </div>
-    )
+	// Queries
+	const query = useQuery({
+		queryKey: ["todos"],
+		queryFn: () =>
+			fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
+				res.json(),
+			),
+	});
+	console.log(query.data);
+	return (
+		<div className="p-2">
+			<h3>Welcome Home!</h3>
+		</div>
+	);
 }
