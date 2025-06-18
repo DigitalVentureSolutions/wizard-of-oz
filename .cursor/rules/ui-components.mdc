@@ -9,6 +9,9 @@ alwaysApply: false
 - Use Shadcn UI and Tailwind for components and styling
 - Implement responsive design with Tailwind CSS using a mobile-first approach
 
+## General
+- When importing types, please prefix type
+
 ## Install new Shadcn components
 
 ```sh

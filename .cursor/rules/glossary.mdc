@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Glossary of Cursor Rules
+
+This file provides a quick reference to the purpose of each rule file located in the `.cursor/rules` directory.
+
+- **[`cursor_rules.mdc`](mdc:.cursor/rules/cursor_rules.mdc)**: Guidelines for creating and maintaining Cursor rules to ensure consistency and effectiveness.
+- **[`glossary.mdc`](mdc:.cursor/rules/glossary.mdc)**: This file; provides a glossary of other Cursor rules.
+- **[`ui-components.mdc`](mdc:.cursor/rules/ui-components.mdc)**: Guidelines for implementing and maintaining user interface components.
+- **[`shadcn-ui.mdc`](mdc:.cursor/rules/ui-components.mdc)**: Guidelines for using shadcn UI components.
+- **[`tanstack-router-router_api.mdc`](mdc:.cursor/rules/tanstack-router-router_api.mdc)**: API reference for tanstack router.
+- **[`tanstack-router-router_guide.mdc`](mdc:.cursor/rules/tanstack-router-router_guide.mdc)**: Guidelines for using tanstack router.
+- **[`tanstack-router-router_routing.mdc`](mdc:.cursor/rules/tanstack-router-router_routing.mdc)**: Guidelines for routing.
+- **[`tanstack-router-router_setup-and-architecture.mdc`](mdc:.cursor/rules/tanstack-router-router_setup-and-architecture.mdc)**: Tanstack router setup and architecture.
