@@ -19,7 +19,15 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"nursery": {
+				"useUniqueElementIds": "off",
+				"noNestedComponentDefinitions": "off"
+			},
+			"a11y": {
+				"useSemanticElements": "off",
+				"noLabelWithoutControl": "off"
+			}
 		}
 	},
 	"javascript": {
