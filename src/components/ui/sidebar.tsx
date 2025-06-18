@@ -21,9 +21,9 @@ import {
 } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import { db } from "@/lib/db";
+import { useLiveQuery } from "dexie-react-hooks";
 
-const SIDEBAR_COOKIE_NAME = "sidebar_state";
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
@@ -66,24 +66,18 @@ function SidebarProvider({
 	const isMobile = useIsMobile();
 	const [openMobile, setOpenMobile] = React.useState(false);
 
-	// This is the internal state of the sidebar.
-	// We use openProp and setOpenProp for control from outside the component.
-	const [_open, _setOpen] = React.useState(defaultOpen);
-	const open = openProp ?? _open;
+	// Dexie-persisted sidebar open state using useLiveQuery
+	const entry = useLiveQuery(() => db.ui.get("sidebar_open"), [db]);
+	const open = typeof entry?.value === "boolean" ? entry.value : defaultOpen;
+
 	const setOpen = React.useCallback(
 		(value: boolean | ((value: boolean) => boolean)) => {
-			const openState = typeof value === "function" ? value(open) : value;
-			if (setOpenProp) {
-				setOpenProp(openState);
-			} else {
-				_setOpen(openState);
-			}
-
-			// This sets the cookie to keep the sidebar state.
-			// document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
-			// TODO: Use dexie to store the sidebar state
+			const openState =
+				typeof value === "function" ? value(open) : value;
+			db.ui.put({ key: "sidebar_open", value: openState });
+			setOpenProp?.(openState);
 		},
-		[setOpenProp, open],
+		[open, setOpenProp]
 	);
 
 	// Helper to toggle the sidebar.
