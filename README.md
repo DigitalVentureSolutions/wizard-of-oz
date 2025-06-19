@@ -1,54 +1,66 @@
-# React + TypeScript + Vite
+# Shadcn Dashboard Template for Vibe Coders
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, frontend dashboard template built with **ShadCN UI**, designed for conducting **Wizard of Oz-style customer discovery**. This template helps vibe coders simulate real user experiences while capturing insights seamlessly — without revealing the magic behind the curtain.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+| Tool             | Purpose                                |
+|------------------|----------------------------------------|
+| [ShadCN/UI]      | Accessible, unstyled component toolkit |
+| [Tailwind CSS]   | Utility-first styling                  |
+| [TanStack Router]| File-based routing (SPA ready)         |
+| [TanStack Query] | Server state + data fetching           |
+| [Dexie.js]       | Client-side persistence (IndexedDB)    |
+| [MSW]            | Local API mocking for fast prototyping |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Features
+
+- 🎭 **Wizard UI**: Simulate interactions as if a backend is real (Wizard of Oz testing)
+- 🧱 Component-first architecture with **shadcn/ui**
+- 📂 Persistent client-side logs via **Dexie**
+- 🔌 Data mocking via **MSW** for ultra-fast iteration
+- 🧭 Type-safe routing with **TanStack Router**
+- ⚡ Server-state management with **TanStack Query**
+- 🎨 Theme-ready styling using **Tailwind**
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# 1. Clone
+git clone https://github.com/vibecoders/wizard-dashboard.git
+cd wizard-dashboard
+
+# 2. Install dependencies
+pnpm install
+# or
+npm install
+
+# 3. Run dev server
+pnpm dev
+# or
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🗂 Project Structure
+/src
+├── components       # Reusable UI components (shadcn-based)
+├── routes           # TanStack Router routes
+├── mocks            # MSW handlers & browser setup
+├── lib              # Shared utilities
+├── lib/db           # Dexie database config
+├── hooks            # Custom React hooks
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🧪 Wizard of Oz Flows
+The app is designed to simulate server responses, user journeys, and backend interactions.
+
+- Update mock logic in src/mocks/handlers.ts
+- Persist interaction logs with Dexie in src/db/
+- Observe real-time feedback via the UI dashboard
+
