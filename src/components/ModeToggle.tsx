@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
 	const { setTheme, resolvedTheme } = useTheme();
-
 	const toggleTheme = React.useCallback(() => {
 		setTheme(resolvedTheme === "dark" ? "light" : "dark");
 	}, [resolvedTheme, setTheme]);

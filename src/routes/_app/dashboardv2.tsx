@@ -1,10 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppSidebar } from "@/components/AppSidebar";
 import { ChartAreaInteractive } from "@/components/ChartAreaInteractive";
 import { DataTable } from "@/components/DataTable";
 import { SectionCards } from "@/components/SectionCards";
-import { SiteHeader } from "@/components/SiteHeader";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 const data = [
 	{
@@ -621,36 +618,20 @@ const data = [
 	},
 ];
 
-export const Route = createFileRoute("/dashboardv2")({
+export const Route = createFileRoute("/_app/dashboardv2")({
 	component: RouteComponent,
 });
 
 function RouteComponent() {
-	const defaultOpen = true;
 	return (
-		<SidebarProvider
-			defaultOpen={defaultOpen}
-			style={
-				{
-					"--sidebar-width": "calc(var(--spacing) * 72)",
-				} as React.CSSProperties
-			}
-		>
-			<AppSidebar variant="inset" />
-			<SidebarInset>
-				<SiteHeader />
-				<div className="flex flex-1 flex-col">
-					<div className="@container/main flex flex-1 flex-col gap-2">
-						<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-							<SectionCards />
-							<div className="px-4 lg:px-6">
-								<ChartAreaInteractive />
-							</div>
-							<DataTable data={data} />
-						</div>
-					</div>
+		<div className={"@container/main flex flex-1 flex-col gap-2"}>
+			<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+				<SectionCards />
+				<div className="px-4 lg:px-6">
+					<ChartAreaInteractive />
 				</div>
-			</SidebarInset>
-		</SidebarProvider>
+				<DataTable data={data} />
+			</div>
+		</div>
 	);
 }

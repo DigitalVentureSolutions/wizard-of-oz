@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_app/")({
 	component: Index,
 });
 
@@ -12,8 +12,5 @@ function Index() {
 		queryFn: () => fetch("/api/todos").then((res) => res.json()),
 	});
 	console.log(query.data);
-	return (
-		<>
-		</>
-	);
+	return <></>;
 }

@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { useLiveQuery } from "dexie-react-hooks";
 import { PanelLeftIcon } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
@@ -20,9 +21,9 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
 import { db } from "@/lib/db";
-import { useLiveQuery } from "dexie-react-hooks";
+import { cn } from "@/lib/utils";
+import { config } from "@/config";
 
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
@@ -72,12 +73,11 @@ function SidebarProvider({
 
 	const setOpen = React.useCallback(
 		(value: boolean | ((value: boolean) => boolean)) => {
-			const openState =
-				typeof value === "function" ? value(open) : value;
+			const openState = typeof value === "function" ? value(open) : value;
 			db.ui.put({ key: "sidebar_open", value: openState });
 			setOpenProp?.(openState);
 		},
-		[open, setOpenProp]
+		[open, setOpenProp],
 	);
 
 	// Helper to toggle the sidebar.
@@ -296,13 +296,18 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
 	);
 }
 
-function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
+function SidebarInset({
+	className,
+	flush = false,
+	...props
+}: React.ComponentProps<"main"> & { flush?: boolean }) {
 	return (
 		<main
 			data-slot="sidebar-inset"
 			className={cn(
 				"bg-background relative flex w-full flex-1 flex-col",
-				"md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+				!flush && "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
+				flush && "border-l",
 				className,
 			)}
 			{...props}
