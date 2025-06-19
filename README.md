@@ -32,18 +32,18 @@ A sleek, frontend dashboard template built with **ShadCN UI**, designed for cond
 ## 🚀 Getting Started
 
 ```bash
+# If you don't have degit
+npm install -g degit
+
 # 1. Clone
-git clone https://github.com/vibecoders/wizard-dashboard.git
-cd wizard-dashboard
+DIR_NAME=your-new-directory-name
+degit git@github.com:DigitalVentureSolutions/wizard-of-oz.git $DIR_NAME
 
 # 2. Install dependencies
-pnpm install
-# or
+cd wizard-of-oz
 npm install
 
 # 3. Run dev server
-pnpm dev
-# or
 npm run dev
 ```
 
