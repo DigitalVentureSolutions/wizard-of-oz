@@ -1,0 +1,10 @@
+---
+name: dexie-best-practices.mdc
+description: Best practices for using Dexie.js for IndexedDB
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+- Use transactions for batch operations to ensure data integrity.
+- Implement versioning for schema changes to manage migrations smoothly.
+- Utilize Dexie's built-in query capabilities for efficient data retrieval.

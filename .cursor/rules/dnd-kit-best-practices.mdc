@@ -1,0 +1,10 @@
+---
+name: dnd-kit-best-practices.mdc
+description: Best practices for using DnD Kit for drag-and-drop functionality
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+- Use the `DndContext` to manage drag-and-drop state effectively.
+- Implement keyboard accessibility for drag-and-drop interactions.
+- Utilize modifiers to customize drag-and-drop behavior and appearance.

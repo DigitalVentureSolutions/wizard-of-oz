@@ -1,0 +1,9 @@
+---
+name: tailwindcss-best-practices.mdc
+description: Best practices for styling with Tailwind CSS
+globs: **/*.ts,**/*.tsx,**/*.css
+---
+
+- Use utility classes for rapid styling and layout adjustments.
+- Create custom themes using Tailwind's configuration for consistency.
+- Leverage `@apply` for reusable styles in your CSS files.

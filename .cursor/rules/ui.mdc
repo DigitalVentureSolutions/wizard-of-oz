@@ -1,0 +1,149 @@
+---
+description: Guidelines for UI components and styling using Shadcn UI, Radix UI, and Tailwind CSS.
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# UI Components & Styling Guidelines
+
+## 🧱 UI Framework
+
+- Use **[Shadcn UI](https://ui.shadcn.com/)** for accessible, composable UI components.  
+- Style components using **Tailwind CSS**, applying a **mobile-first, responsive** approach.
+
+## 📁 Project Structure
+
+- UI components live in `src/components/ui/`, using aliases from `components.json`.
+
+```tsx
+import { Button } from "@/components/ui/button"
+import {
+  Tabs, TabsContent, TabsList, TabsTrigger
+} from "@/components/ui/tabs"
+import {
+  Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
+} from "@/components/ui/card"
+```
+
+## 📦 Installing Components
+
+Use the Shadcn CLI to install components:
+
+```bash
+npx shadcn@latest add COMPONENT_NAME
+```
+
+Example:
+
+```bash
+npx shadcn@latest add progress
+```
+
+> ✅ Use `shadcn@latest` — *avoid* deprecated `shadcn-ui@latest`.
+
+### Common Components to Consider
+
+- Accordion  
+- Alert  
+- AlertDialog  
+- AspectRatio  
+- Avatar  
+- Calendar  
+- Checkbox  
+- Collapsible  
+- Command  
+- ContextMenu  
+- DataTable  
+- DatePicker  
+- DropdownMenu  
+- Form  
+- HoverCard  
+- Menubar  
+- NavigationMenu  
+- Popover  
+- Progress  
+- RadioGroup  
+- ScrollArea  
+- Select  
+- Separator  
+- Sheet  
+- Skeleton  
+- Slider  
+- Switch  
+- Table  
+- Textarea  
+- Toast  
+- Toggle  
+- Tooltip  
+
+See full list: https://ui.shadcn.com/docs/components
+
+## 🎨 Theming
+
+- We use the **"new-york"** style with the **"neutral"** color scheme.  
+- Theming is configured via **CSS variables** in `components.json`.
+
+## 💡 General Code Style
+
+- **Prefix imported types** with `type`, e.g.:
+
+```tsx
+import type { User } from "@/types"
+```
+
+- Keep imports ordered: external libraries → shared components → local modules.
+
+## 🔄 Data Fetching (SWR)
+
+Use [`swr`](https://swr.vercel.app/) for `GET` requests:
+
+```tsx
+const searchParams = useSearchParams();
+const page = searchParams.get("page") || "1";
+
+const { data, isLoading, error } = useSWR<PlanHistoryResponse>(
+  `/api/user/planned/history?page=${page}`
+);
+```
+
+## ⏳ Handling Loading & Error States
+
+Use the `LoadingContent` wrapper component:
+
+```tsx
+<Card>
+  <LoadingContent loading={isLoading} error={error}>
+    {data && <MyComponent data={data} />}
+  </LoadingContent>
+</Card>
+```
+
+## 📝 Form Components
+
+Use shared, validated inputs:
+
+### Email Input
+
+```tsx
+<Input
+  type="email"
+  name="email"
+  label="Email"
+  registerProps={register("email", { required: true })}
+  error={errors.email}
+/>
+```
+
+### Text Area
+
+```tsx
+<Input
+  type="text"
+  autosizeTextarea
+  rows={3}
+  name="message"
+  placeholder="Paste in email content"
+  registerProps={register("message", { required: true })}
+  error={errors.message}
+/>
+```

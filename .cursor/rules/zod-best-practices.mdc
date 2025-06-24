@@ -1,0 +1,10 @@
+---
+name: zod-best-practices.mdc
+description: Best practices for schema validation with Zod
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+- Define schemas for data validation to ensure type safety.
+- Use `.refine()` for custom validation logic.
+- Leverage `.merge()` to combine multiple schemas for complex data structures.

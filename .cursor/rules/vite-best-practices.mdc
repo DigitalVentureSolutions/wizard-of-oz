@@ -1,0 +1,10 @@
+---
+name: vite-best-practices.mdc
+description: Best practices for building applications with Vite
+globs: **/*.ts,**/*.tsx
+alwaysApply: false
+---
+
+- Use Vite's built-in support for hot module replacement (HMR) for a better development experience.
+- Optimize build performance by configuring the `build.rollupOptions`.
+- Leverage Vite plugins for enhanced functionality, such as React support.
